@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="Failed suite [Suite]" guice-stage="DEVELOPMENT">
+  <test thread-count="5" name="Testng(failed)">
+    <classes>
+      <class name="com.testng.AddToCart">
+        <methods>
+          <include name="beforeMethod"/>
+          <include name="addtocart"/>
+          <include name="afterMethod"/>
+        </methods>
+      </class> <!-- com.testng.AddToCart -->
+      <class name="com.testng.Search">
+        <methods>
+          <include name="search"/>
+          <include name="beforeMethod"/>
+          <include name="afterMethod"/>
+        </methods>
+      </class> <!-- com.testng.Search -->
+      <class name="com.testng.Login">
+        <methods>
+          <include name="beforeMethod"/>
+          <include name="login"/>
+          <include name="afterMethod"/>
+        </methods>
+      </class> <!-- com.testng.Login -->
+    </classes>
+  </test> <!-- Testng(failed) -->
+</suite> <!-- Failed suite [Suite] -->
