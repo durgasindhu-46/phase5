@@ -1,0 +1,26 @@
+Pipeline code:
+pipeline {
+agent any
+stages {
+stage('App Build') {
+steps {
+echo 'App is Build'
+}
+}
+stage('Image build') {
+steps {
+echo 'Image build successfully'
+}
+}
+stage('Container Build') {
+steps {
+echo 'Container Build successfully'
+}
+}
+stage('App Run') {
+steps {
+echo 'App is running'
+}
+}
+}
+}
