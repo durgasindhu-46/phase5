@@ -1,0 +1,59 @@
+Step-1:Create an instance and connect to ec2
+Step-2:check the java version:
+>>java -version
+Step-3: If not present then install java and its dependencies:
+>>sudo yum -y install java-1.8.0-openjdk
+>>java -version
+Step-4: Install elastic search on AWS server:
+>>sudo su
+>>yum install -y
+>>cd /root
+>>wget https://download.elastic.co/elasticsearch/elasticsearch/elasticsearch-1.7.2.noarch.rpm
+>>yum install elasticsearch-1.7.2.noarch.rpm -y
+>>rm -f elasticsearch-1.7.2.noarch.rpm
+Step-5:Start server:
+>>service elasticsearch start
+Step-6:Automatically boot you on start:
+>>sudo chkconfig --add elasticsearch
+Step-7:Configuring AWS IP so you can access using public ip:
+>>echo "network.host: 0.0.0.0" >> /etc/elasticsearch/elasticsearch.yml
+Step-8:check elastic search: using the ipaddress:9200 on browser will get the output as below:
+{
+  "status" : 200,
+  "name" : "Jocasta",
+  "cluster_name" : "elasticsearch",
+  "version" : {
+    "number" : "1.7.2",
+    "build_hash" : "e43676b1385b8125d647f593f7202acbd816e8ec",
+    "build_timestamp" : "2015-09-14T09:49:53Z",
+    "build_snapshot" : false,
+    "lucene_version" : "4.10.4"
+  },
+  "tagline" : "You Know, for Search"
+}
+Step-9:Install plugins:
+>>cd /usr/share/elasticsearch/
+>>./bin/plugin -install mobz/elasticsearch-head
+>>./bin/plugin -install lukas-vlcek/bigdesk
+>>./bin/plugin -install elasticsearch/elasticsearch-cloud-aws/2.7.1
+>>./bin/plugin -install lmenezes/elasticsearch-kopf/1.5.7
+Step-10: Install Kibana
+>>sudo su
+>>yum update -y
+>>cd /root
+>>wget https://download.elastic.co/kibana/kibana/kibana-4.1.2-linux-x64.tar.gz
+>>tar xzf kibana-4.1.2-linux-x64.tar.gz
+>>rm -f kibana-4.1.2-linux-x64.tar.gz
+>>cd kibana-4.1.2-linux-x64
+>>nano config/kibana.yml
+Step-11: You will get config/kibana.yml file
+Step-12: Finally run those commands
+>>nohup ./bin/kibana &
+>>nohup: ignoring input and appending output to 'nohup.out'
+Step-13:check the outputs by using following urls:
+>>ipaddress:9200/_plugin/head/
+This will move to elastic search page
+For nodes:
+>>ipaddress:9200/_plugin/bigdesk/#nodes
+For clusters:
+>>ipaddress:9200/_plugin/bigdesk/#cluster
